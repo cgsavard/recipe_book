@@ -107,7 +107,7 @@ elif service=='get_recipe':
 #-----------------------------
 
 elif service=='find_ingredients':
-    ingred = [{ "ingredients" : item.split(' ') } for item in input("Enter the ingredients with a comma space between each, then press 'enter': ").split(',') ]
+    ingred = [{ "ingredients" : item.strip(' ') } for item in input("Enter the ingredients with a comma space between each, then press 'enter': ").split(',') ]
         
     url = addr+"/api/"+service
 
@@ -136,7 +136,7 @@ elif service=='add_recipe':
     steps = [step.strip(' ') for step in input("Steps (include a comma between each step): ").split(',')]
     n_steps = len(steps)
 
-    recipe = {"name" : name, "minutes" : minutes, "n_steps" : n_steps, "steps" : steps, "n_ingredients" : n_ingredients, "ingredients" : ingredients}
+    recipe = {"name" : name, "minutes" : minutes, "n_steps" : n_steps, "steps" : steps, "n_ingredients" : n_ingredients, "ingredients" : ingredients, "ratings" : [], "comments" : []}
     
     data = json.dumps(recipe)
     headers = {'content-type': 'application/json'}
